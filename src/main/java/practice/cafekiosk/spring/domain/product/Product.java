@@ -32,7 +32,7 @@ public class Product extends BaseEntity {
         this.price = price;
     }
 
-    public static Product createProduct(String productNumber, ProductType type, ProductSellingStatus sellingStatus, String name, int price) {
+    public static Product create(String productNumber, ProductType type, ProductSellingStatus sellingStatus, String name, int price) {
         return Product.builder()
                 .productNumber(productNumber)
                 .type(type)

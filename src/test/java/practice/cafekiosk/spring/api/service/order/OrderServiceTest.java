@@ -30,11 +30,11 @@ class OrderServiceTest {
     @Test
     void createOrder() {
         // given
-        Product product1 = Product.createProduct("001",
+        Product product1 = Product.create("001",
                 ProductType.HANDMADE, ProductSellingStatus.SELLING, "아메리카노", 4000);
-        Product product2 = Product.createProduct("002",
+        Product product2 = Product.create("002",
                 ProductType.HANDMADE, ProductSellingStatus.HOLD, "카페라떼", 4500);
-        Product product3 = Product.createProduct("003",
+        Product product3 = Product.create("003",
                 ProductType.HANDMADE, ProductSellingStatus.STOP_SELLING, "팥빙수", 7000);
         productRepository.saveAll(List.of(product1, product2, product3));
         OrderCreateRequest request = new OrderCreateRequest(List.of("001", "002"));
