@@ -24,11 +24,21 @@ public class Product extends BaseEntity {
     private int price;
 
     @Builder
-    public Product(String productNumber, ProductType type, ProductSellingStatus sellingStatus, String name, int price) {
+    private Product(String productNumber, ProductType type, ProductSellingStatus sellingStatus, String name, int price) {
         this.productNumber = productNumber;
         this.type = type;
         this.sellingStatus = sellingStatus;
         this.name = name;
         this.price = price;
+    }
+
+    public static Product createProduct(String productNumber, ProductType type, ProductSellingStatus sellingStatus, String name, int price) {
+        return Product.builder()
+                .productNumber(productNumber)
+                .type(type)
+                .sellingStatus(sellingStatus)
+                .name(name)
+                .price(price)
+                .build();
     }
 }
