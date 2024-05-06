@@ -34,13 +34,13 @@ public class OrderProduct extends BaseEntity {
         OrderProduct orderProduct = OrderProduct.builder()
                 .product(product)
                 .build();
-        orderProduct.changeOrderProduct(order);
+        orderProduct.changeOrder(order);
         return orderProduct;
     }
 
-    private void changeOrderProduct(Order order) {
+    private void changeOrder(Order order) {
         if (this.order != null) {
-            order.removeOrderProduct(this);
+            this.order.removeOrderProduct(this);
         }
         this.order = order;
         order.addOrderProduct(this);
