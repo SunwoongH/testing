@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import practice.cafekiosk.spring.api.dto.request.ProductCreateRequest;
 import practice.cafekiosk.spring.api.dto.response.ProductResponse;
 import practice.cafekiosk.spring.api.service.product.ProductService;
 
@@ -15,6 +17,11 @@ import java.util.List;
 @Controller
 public class ProductApiController {
     private final ProductService productService;
+
+    @PostMapping("/new")
+    public void createProduct(ProductCreateRequest request) {
+        productService.createProduct(request);
+    }
 
     @GetMapping("/selling")
     public ResponseEntity<List<ProductResponse>> getSellingProducts() {
