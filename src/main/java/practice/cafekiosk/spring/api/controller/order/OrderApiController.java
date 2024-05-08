@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 @RequestMapping("/api/orders")
 @Controller
-public class OrderController {
+public class OrderApiController {
     private final OrderService orderService;
 
     @PostMapping("/new")
