@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import practice.cafekiosk.spring.api.dto.request.OrderCreateRequest;
-import practice.cafekiosk.spring.api.dto.response.OrderResponse;
+import practice.cafekiosk.spring.api.service.order.request.OrderCreateServiceRequest;
+import practice.cafekiosk.spring.api.service.order.response.OrderResponse;
 import practice.cafekiosk.spring.domain.order.OrderRepository;
 import practice.cafekiosk.spring.domain.orderproduct.OrderProductRepository;
 import practice.cafekiosk.spring.domain.product.Product;
@@ -58,7 +58,7 @@ class OrderServiceTest {
         Product product3 = Product.create("003",
                 ProductType.HANDMADE, ProductSellingStatus.STOP_SELLING, "팥빙수", 7000);
         productRepository.saveAll(List.of(product1, product2, product3));
-        OrderCreateRequest request = new OrderCreateRequest(List.of("001", "002"));
+        OrderCreateServiceRequest request = new OrderCreateServiceRequest(List.of("001", "002"));
         LocalDateTime registeredDateTime = LocalDateTime.now();
 
         // when
@@ -94,7 +94,7 @@ class OrderServiceTest {
         Stock stock2 = Stock.create("002", 2);
         stockRepository.saveAll(List.of(stock1, stock2));
 
-        OrderCreateRequest request = new OrderCreateRequest(List.of("001", "001", "002", "003"));
+        OrderCreateServiceRequest request = new OrderCreateServiceRequest(List.of("001", "001", "002", "003"));
         LocalDateTime registeredDateTime = LocalDateTime.now();
 
         // when
@@ -139,7 +139,7 @@ class OrderServiceTest {
         Stock stock2 = Stock.create("002", 1);
         stockRepository.saveAll(List.of(stock1, stock2));
 
-        OrderCreateRequest request = new OrderCreateRequest(List.of("001", "001", "002", "003"));
+        OrderCreateServiceRequest request = new OrderCreateServiceRequest(List.of("001", "001", "002", "003"));
         LocalDateTime registeredDateTime = LocalDateTime.now();
 
         // when & then
@@ -159,7 +159,7 @@ class OrderServiceTest {
         Product product3 = Product.create("003",
                 ProductType.HANDMADE, ProductSellingStatus.STOP_SELLING, "팥빙수", 7000);
         productRepository.saveAll(List.of(product1, product2, product3));
-        OrderCreateRequest request = new OrderCreateRequest(List.of("001", "001"));
+        OrderCreateServiceRequest request = new OrderCreateServiceRequest(List.of("001", "001"));
         LocalDateTime registeredDateTime = LocalDateTime.now();
 
         // when

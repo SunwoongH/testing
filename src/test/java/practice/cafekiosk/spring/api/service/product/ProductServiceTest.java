@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import practice.cafekiosk.spring.api.dto.request.ProductCreateRequest;
-import practice.cafekiosk.spring.api.dto.response.ProductResponse;
+import practice.cafekiosk.spring.api.service.product.request.ProductCreateServiceRequest;
+import practice.cafekiosk.spring.api.service.product.response.ProductResponse;
 import practice.cafekiosk.spring.domain.product.Product;
 import practice.cafekiosk.spring.domain.product.ProductRepository;
 import practice.cafekiosk.spring.domain.product.ProductSellingStatus;
@@ -38,7 +38,7 @@ class ProductServiceTest {
         Product product = Product.create("001",
                 ProductType.HANDMADE, ProductSellingStatus.SELLING, "아메리카노", 4000);
         productRepository.save(product);
-        ProductCreateRequest request = new ProductCreateRequest(ProductType.HANDMADE,
+        ProductCreateServiceRequest request = new ProductCreateServiceRequest(ProductType.HANDMADE,
                 ProductSellingStatus.SELLING, "카푸치노", 5000);
 
         // when
@@ -61,7 +61,7 @@ class ProductServiceTest {
     @Test
     void createProductWhenProductIsEmpty() {
         // given
-        ProductCreateRequest request = new ProductCreateRequest(ProductType.HANDMADE,
+        ProductCreateServiceRequest request = new ProductCreateServiceRequest(ProductType.HANDMADE,
                 ProductSellingStatus.SELLING, "카푸치노", 5000);
 
         // when
