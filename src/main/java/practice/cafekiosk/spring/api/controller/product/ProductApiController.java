@@ -1,30 +1,29 @@
 package practice.cafekiosk.spring.api.controller.product;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import practice.cafekiosk.spring.api.dto.request.ProductCreateRequest;
-import practice.cafekiosk.spring.api.dto.response.ProductResponse;
+import org.springframework.web.bind.annotation.*;
+import practice.cafekiosk.spring.api.common.ApiResponse;
+import practice.cafekiosk.spring.api.controller.product.request.ProductCreateRequest;
+import practice.cafekiosk.spring.api.service.product.response.ProductResponse;
 import practice.cafekiosk.spring.api.service.product.ProductService;
 
 import java.util.List;
 
 @RequiredArgsConstructor
 @RequestMapping("/api/products")
-@Controller
+@RestController
 public class ProductApiController {
     private final ProductService productService;
 
     @PostMapping("/new")
-    public void createProduct(ProductCreateRequest request) {
-        productService.createProduct(request);
+    public ApiResponse<ProductResponse> createProduct(@Valid @RequestBody final ProductCreateRequest request) {
+        final ProductResponse response = productService.createProduct(request.toServiceRequest());
+        return ApiResponse.ok(response);
     }
 
     @GetMapping("/selling")
-    public ResponseEntity<List<ProductResponse>> getSellingProducts() {
-        return ResponseEntity.ok(productService.getSellingProducts());
+    public ApiResponse<List<ProductResponse>> getSellingProducts() {
+        return ApiResponse.ok(productService.getSellingProducts());
     }
 }

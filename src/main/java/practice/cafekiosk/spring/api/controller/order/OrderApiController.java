@@ -1,26 +1,27 @@
 package practice.cafekiosk.spring.api.controller.order;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import practice.cafekiosk.spring.api.dto.request.OrderCreateRequest;
-import practice.cafekiosk.spring.api.dto.response.OrderResponse;
+import org.springframework.web.bind.annotation.RestController;
+import practice.cafekiosk.spring.api.common.ApiResponse;
+import practice.cafekiosk.spring.api.controller.order.request.OrderCreateRequest;
+import practice.cafekiosk.spring.api.service.order.response.OrderResponse;
 import practice.cafekiosk.spring.api.service.order.OrderService;
 
 import java.time.LocalDateTime;
 
 @RequiredArgsConstructor
 @RequestMapping("/api/orders")
-@Controller
+@RestController
 public class OrderApiController {
     private final OrderService orderService;
 
     @PostMapping("/new")
-    public ResponseEntity<OrderResponse> createOrder(@RequestBody final OrderCreateRequest request) {
-        final OrderResponse response = orderService.createOrder(request, LocalDateTime.now());
-        return ResponseEntity.ok(response);
+    public ApiResponse<OrderResponse> createOrder(@Valid @RequestBody final OrderCreateRequest request) {
+        final OrderResponse response = orderService.createOrder(request.toServiceRequest(), LocalDateTime.now());
+        return ApiResponse.ok(response);
     }
 }
