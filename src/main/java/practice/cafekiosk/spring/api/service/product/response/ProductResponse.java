@@ -1,6 +1,5 @@
-package practice.cafekiosk.spring.api.dto.response;
+package practice.cafekiosk.spring.api.service.product.response;
 
-import com.zaxxer.hikari.pool.ProxyDatabaseMetaData;
 import lombok.AccessLevel;
 import lombok.Builder;
 import practice.cafekiosk.spring.domain.product.Product;

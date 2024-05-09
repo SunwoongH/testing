@@ -3,8 +3,8 @@ package practice.cafekiosk.spring.api.service.order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import practice.cafekiosk.spring.api.dto.request.OrderCreateRequest;
-import practice.cafekiosk.spring.api.dto.response.OrderResponse;
+import practice.cafekiosk.spring.api.service.order.request.OrderCreateServiceRequest;
+import practice.cafekiosk.spring.api.service.order.response.OrderResponse;
 import practice.cafekiosk.spring.domain.order.Order;
 import practice.cafekiosk.spring.domain.order.OrderRepository;
 import practice.cafekiosk.spring.domain.product.Product;
@@ -28,7 +28,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final StockRepository stockRepository;
 
-    public OrderResponse createOrder(OrderCreateRequest request, LocalDateTime registeredDateTime) {
+    public OrderResponse createOrder(OrderCreateServiceRequest request, LocalDateTime registeredDateTime) {
         List<String> productNumbers = request.productNumbers();
         List<Product> findProducts = findProductsBy(productNumbers);
         deductStockQuantities(findProducts);

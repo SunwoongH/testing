@@ -1,7 +1,8 @@
-package practice.cafekiosk.spring.api.dto.response;
+package practice.cafekiosk.spring.api.service.order.response;
 
 import lombok.AccessLevel;
 import lombok.Builder;
+import practice.cafekiosk.spring.api.service.product.response.ProductResponse;
 import practice.cafekiosk.spring.domain.order.Order;
 
 import java.time.LocalDateTime;

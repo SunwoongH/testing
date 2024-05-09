@@ -3,8 +3,8 @@ package practice.cafekiosk.spring.api.service.product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import practice.cafekiosk.spring.api.dto.request.ProductCreateRequest;
-import practice.cafekiosk.spring.api.dto.response.ProductResponse;
+import practice.cafekiosk.spring.api.service.product.request.ProductCreateServiceRequest;
+import practice.cafekiosk.spring.api.service.product.response.ProductResponse;
 import practice.cafekiosk.spring.domain.product.Product;
 import practice.cafekiosk.spring.domain.product.ProductRepository;
 import practice.cafekiosk.spring.domain.product.ProductSellingStatus;
@@ -18,7 +18,7 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     @Transactional
-    public ProductResponse createProduct(ProductCreateRequest request) {
+    public ProductResponse createProduct(ProductCreateServiceRequest request) {
         String nextProductNumber = createNextProductNumber();
         Product product = Product.create(nextProductNumber, request.type(),
                 request.sellingStatus(), request.name(), request.price());
