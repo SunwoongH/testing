@@ -1,4 +1,4 @@
-package practice.cafekiosk.spring.domain;
+package practice.cafekiosk.spring.domain.common;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;

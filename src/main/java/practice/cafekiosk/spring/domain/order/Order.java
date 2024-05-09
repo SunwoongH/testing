@@ -5,7 +5,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import practice.cafekiosk.spring.domain.BaseEntity;
+import practice.cafekiosk.spring.domain.common.BaseEntity;
 import practice.cafekiosk.spring.domain.orderproduct.OrderProduct;
 import practice.cafekiosk.spring.domain.product.Product;
 
