@@ -30,8 +30,8 @@ public class Order extends BaseEntity {
     private List<OrderProduct> orderProducts = new ArrayList<>();
 
     @Builder
-    private Order(List<Product> products, LocalDateTime registeredDateTime) {
-        this.orderStatus = OrderStatus.INIT;
+    private Order(List<Product> products, OrderStatus orderStatus, LocalDateTime registeredDateTime) {
+        this.orderStatus = orderStatus;
         this.totalPrice = calculateTotalPrice(products);
         this.registeredDateTime = registeredDateTime;
         products.forEach(product -> OrderProduct.create(this, product));
@@ -40,6 +40,15 @@ public class Order extends BaseEntity {
     public static Order create(List<Product> products, LocalDateTime registeredDateTime) {
         return Order.builder()
                 .products(products)
+                .orderStatus(OrderStatus.INIT)
+                .registeredDateTime(registeredDateTime)
+                .build();
+    }
+
+    public static Order create(List<Product> products, OrderStatus orderStatus, LocalDateTime registeredDateTime) {
+        return Order.builder()
+                .products(products)
+                .orderStatus(orderStatus)
                 .registeredDateTime(registeredDateTime)
                 .build();
     }
